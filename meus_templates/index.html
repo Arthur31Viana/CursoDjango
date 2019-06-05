@@ -1,0 +1,40 @@
+<!-- Chamando tudo do arquivo base.html pra cá -->
+{% extends 'base.html' %} <!-- Chamando o arquivo base.html -->
+{% block title %}Seja bem vindo - Pagina principal{% endblock %}
+{% block main %} <!-- principal bloco -->
+
+    <h1 class="programe_facil">Olá Mundo!</h1>
+
+    <br>
+    <!-- Imprimindo variável no HTML -->
+    {{ minha_variavel }}
+    <br>
+    <p>Condicionais</p>
+    <!-- Chamando a função if dentro da template em Jinja -->
+    {% if sexo == 'm' %}
+        Olá Senhor {{ nome }}
+    {% elif sexo == 'f' %}
+        Olá Senhora {{ nome }}
+    {% else %}
+        Olá {{ nome }}
+    {% endif %}
+    <br>
+    <br>
+
+    <p>Loops</p>
+    <ul>
+        {% for pessoa in lista %}
+            {% if pessoa.sexo == 'm' or pessoa.sexo == 'M' %}
+                <li>Olá Senhor {{ pessoa.nome }}</li>
+            {% elif pessoa.sexo == 'f' or pessoa.sexo == 'F'%}
+                <li>Olá Senhora {{ pessoa.nome }}</li>
+            {% else %}
+                <li>Olá {{ pessoa.nome }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <button class="btn btn-info" onclick="olaMundo()">Clique aqui</button>
+
+    {% include 'footer.html' with pnome=nome %} <!-- footer com variável -->
+{% endblock %}
